@@ -1,0 +1,25 @@
+services:
+  backend:
+    container_name: server
+    restart: always
+    build:
+      context: backend
+      # additional_contexts:
+      #   config: config
+      args: 
+        NODE_PORT: ${NODE_PORT}
+    ports:
+      - "${NODE_PORT}:${NODE_PORT}"
+    depends_on:
+      - mongo
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+  mongo:
+    container_name: mongo
+    image: mongo:5.7.0
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    user: "1000:1000"
