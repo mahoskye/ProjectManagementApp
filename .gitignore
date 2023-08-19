@@ -18,6 +18,7 @@ docker-compose*.yml
 data/
 
 # Development Environment
+.devcontainer/
 *.code-workspace
 .vscode/
 .idea/
